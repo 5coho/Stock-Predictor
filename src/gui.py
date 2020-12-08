@@ -80,7 +80,7 @@ class stock_gui(QWidget):
         #dataList = data.values.tolist()
 
         #need to figure out how to imbed into pyqt
-        mplfinance.plot(data, type='candle', show_nontrading=True, style="yahoo", ylabel="Price", title=f"{symbol} Chart")
+        mplfinance.plot(data, type='candle', show_nontrading=False, style="yahoo", ylabel="Price", title=f"{symbol} Chart")
         plt.show()
 
 
@@ -92,5 +92,5 @@ class stock_gui(QWidget):
 
     #this populates the stock symbol combobox with stock symbols
     def _populateComboBox(self):
-        symbols = ['AC.TO']
+        symbols = ['AC.TO', 'TSLA', 'FTS.TO', 'ENB.TO', 'AMD', 'BTO.TO', 'HSE.TO', 'TRZ.TO', 'NFLX']
         self.comboBox_ticker.addItems(symbols)
