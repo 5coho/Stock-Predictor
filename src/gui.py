@@ -79,6 +79,7 @@ class stock_gui(QWidget):
         data = self.fetcher.getData(symbol, startDate, endDate)
         #dataList = data.values.tolist()
 
+        #need to figure out how to imbed into pyqt
         mplfinance.plot(data, type='candle', show_nontrading=True, style="yahoo", ylabel="Price", title=f"{symbol} Chart")
         plt.show()
 
