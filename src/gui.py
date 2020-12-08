@@ -79,7 +79,7 @@ class stock_gui(QWidget):
         data = self.fetcher.getData(symbol, startDate, endDate)
         #dataList = data.values.tolist()
 
-        mplfinance.plot(data, type='candle', no_xgaps=True)
+        mplfinance.plot(data, type='candle', show_nontrading=True, style="yahoo", ylabel="Price", title=f"{symbol} Chart")
         plt.show()
 
 
