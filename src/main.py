@@ -9,15 +9,15 @@ Creates The QApplication, Initializes GUI, then displays it.
 
 
 #Metadata
-__author__          = "Scott Howes, Braeden Van Der Velde"
-__credits__         = "Scott Howes, Braeden Van Der Velde"
-__email__           = "showes@unbc.ca, "
+__author__          = "Scott Howes, Braeden Van Der Velde, Tyler Leary"
+__credits__         = "Scott Howes, Braeden Van Der Velde, Tyler Leary"
+__email__           = "showes@unbc.ca, velde@unbc.ca"
 __python_version__  = "3.9.0"
 
 
 #imports go here
 import sys
-from seq_gui import seq_gui
+from gui import stock_gui
 from PyQt5.QtWidgets import QApplication
 
 
@@ -25,7 +25,7 @@ from PyQt5.QtWidgets import QApplication
 #creates and shows the create node gui
 def main():
     app = QApplication(sys.argv)
-    gui = seq_gui()
+    gui = stock_gui()
     gui.show()
     sys.exit(app.exec_())
 

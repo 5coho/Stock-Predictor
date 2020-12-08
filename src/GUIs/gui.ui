@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form_mainWindow</class>
+ <widget class="QWidget" name="Form_mainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1028</width>
+    <height>591</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Stock Prediction from Historical Data</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../media/chart.ico</normaloff>../media/chart.ico</iconset>
+  </property>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
