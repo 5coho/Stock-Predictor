@@ -84,9 +84,8 @@ class stock_gui(QWidget):
         self.data = self.fetcher.getData(self.symbol, self.startDate, self.endDate)
         #dataList = data.values.tolist()
 
-        #need to figure out how to imbed into pyqt
-        mplfinance.plot(self.data, type='candle', show_nontrading=False, style="yahoo", ylabel="Price", title=f"{self.symbol} Chart")
-        plt.show()
+        #plotting data
+        self._plotStock(self.data)
 
 
     #creates the functionality for the Linear Regression Predict button
@@ -99,3 +98,12 @@ class stock_gui(QWidget):
     def _populateComboBox(self):
         symbols = ['AC.TO', 'TSLA', 'FTS.TO', 'ENB.TO', 'AMD', 'BTO.TO', 'HSE.TO', 'TRZ.TO', 'NFLX', 'BTO.TO']
         self.comboBox_ticker.addItems(symbols)
+
+
+    #this function is for plotting the data and adding it to layout_chart
+    #is a candlestick chart
+    def _plotStock(self, stockData):
+
+        #need to figure out how to imbed into pyqt
+        mplfinance.plot(self.data, type='candle', show_nontrading=False, style="yahoo", ylabel="Price", title=f"{self.symbol} Chart")
+        plt.show()

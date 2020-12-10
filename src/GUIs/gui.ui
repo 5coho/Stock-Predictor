@@ -10,6 +10,12 @@
     <height>730</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>1104</width>
+    <height>730</height>
+   </size>
+  </property>
   <property name="font">
    <font>
     <weight>50</weight>
@@ -24,7 +30,14 @@
     <normaloff>../media/chart.ico</normaloff>../media/chart.ico</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="1" column="0">
+   <item row="0" column="1" rowspan="3">
+    <layout class="QVBoxLayout" name="layout_chart">
+     <property name="sizeConstraint">
+      <enum>QLayout::SetFixedSize</enum>
+     </property>
+    </layout>
+   </item>
+   <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox_stock">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -125,26 +138,7 @@
      </layout>
     </widget>
    </item>
-   <item row="1" column="1" rowspan="3">
-    <widget class="QLabel" name="label">
-     <property name="frameShape">
-      <enum>QFrame::WinPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Sunken</enum>
-     </property>
-     <property name="lineWidth">
-      <number>2</number>
-     </property>
-     <property name="text">
-      <string>Place Holder Label for chart</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
+   <item row="1" column="0">
     <widget class="QGroupBox" name="groupBox_LR">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
