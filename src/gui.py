@@ -47,6 +47,10 @@ class stock_gui(QWidget):
         self.move(20,20)
         self.fetcher = dataFetch()
 
+        #variables from the stock groupbox
+        self.startDate = ""
+        self.endDate = ""
+        self.symbol = ""
 
         #setting the dateEdit_end to current date
         self.dateEdit_end.setDate(QDate(date.today()))
@@ -56,7 +60,7 @@ class stock_gui(QWidget):
 
         #this is where the data that is grabbed from yfinance goes
         #is a panda dataFrame Object
-        self.data = []
+        self.data
 
 
     #loads the connection for the buttons
@@ -72,16 +76,16 @@ class stock_gui(QWidget):
     def bttn_plot_clicked(self):
 
         #creating variables from labels
-        startDate = self.dateEdit_start.date().toString("yyyy-MM-dd")
-        endDate = self.dateEdit_end.date().toString("yyyy-MM-dd")
-        symbol = self.comboBox_ticker.currentText()
+        self.startDate = self.dateEdit_start.date().toString("yyyy-MM-dd")
+        self.endDate = self.dateEdit_end.date().toString("yyyy-MM-dd")
+        self.symbol = self.comboBox_ticker.currentText()
 
         #getting the data from dataFetch
-        data = self.fetcher.getData(symbol, startDate, endDate)
+        self.data = self.fetcher.getData(symbol, startDate, endDate)
         #dataList = data.values.tolist()
 
         #need to figure out how to imbed into pyqt
-        mplfinance.plot(data, type='candle', show_nontrading=False, style="yahoo", ylabel="Price", title=f"{symbol} Chart")
+        mplfinance.plot(self.data, type='candle', show_nontrading=False, style="yahoo", ylabel="Price", title=f"{symbol} Chart")
         plt.show()
 
 
