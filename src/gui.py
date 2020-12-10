@@ -25,6 +25,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mpl_dates
 from dataFetch import dataFetch
 from datetime import date
+import numpy as np
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtCore import Qt
 from PyQt5.QtCore import QDate
@@ -50,7 +51,7 @@ class stock_gui(QWidget):
         #variables from the stock groupbox
         self.startDate = ""
         self.endDate = ""
-        self.symbol = ""
+        self.symbol = "No Symbol"
 
         #setting the dateEdit_end to current date
         self.dateEdit_end.setDate(QDate(date.today()))
@@ -58,9 +59,12 @@ class stock_gui(QWidget):
         #populating the stock combobox with symbols
         self._populateComboBox()
 
+        #plotting place holder Chart
+        #self._plotPlaceHolder()
+
         #this is where the data that is grabbed from yfinance goes
         #is a panda dataFrame Object
-        #self.data = pd.dataFrame()
+        self.data = pd.DataFrame()
 
 
     #loads the connection for the buttons
@@ -105,5 +109,15 @@ class stock_gui(QWidget):
     def _plotStock(self, stockData):
 
         #need to figure out how to imbed into pyqt
-        mplfinance.plot(self.data, type='candle', show_nontrading=False, style="yahoo", ylabel="Price", title=f"{self.symbol} Chart")
+        mplfinance.plot(stockData, type='candle', show_nontrading=False, style="yahoo", ylabel="Price", title=f"{self.symbol} Chart")
         plt.show()
+
+
+    #this funciton is for plotting a place holder chart when starting the program
+    def _plotPlaceHolder(self):
+
+        #creating fake data
+        falseData = pd.DataFrame()
+
+        #plotting
+        self._plotStock(falseData)
