@@ -11,7 +11,7 @@ Currently underdevelopment
 #Metadata
 __author__          = "Scott Howes, Braeden Van Der Velde, Tyler Leary"
 __credits__         = "Scott Howes, Braeden Van Der Velde, Tyler Leary"
-__email__           = "showes@unbc.ca, velde@unbc.ca"
+__email__           = "showes@unbc.ca, velde@unbc.ca, leary@unbc.ca"
 __python_version__  = "3.9.0"
 
 
@@ -55,6 +55,7 @@ class stock_gui(QWidget):
         self._populateComboBox()
 
         #this is where the data that is grabbed from yfinance goes
+        #is a panda dataFrame Object
         self.data = []
 
 

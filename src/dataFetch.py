@@ -10,7 +10,7 @@ basically only has one public function, getData that accesses the Api
 #Metadata
 __author__          = "Scott Howes, Braeden Van Der Velde, Tyler Leary"
 __credits__         = "Scott Howes, Braeden Van Der Velde, Tyler Leary"
-__email__           = "showes@unbc.ca, velde@unbc.ca"
+__email__           = "showes@unbc.ca, velde@unbc.ca leary@unbc.ca"
 __python_version__  = "3.9.0"
 
 
