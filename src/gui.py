@@ -60,7 +60,7 @@ class stock_gui(QWidget):
 
         #this is where the data that is grabbed from yfinance goes
         #is a panda dataFrame Object
-        self.data
+        #self.data = pd.dataFrame()
 
 
     #loads the connection for the buttons
@@ -81,11 +81,11 @@ class stock_gui(QWidget):
         self.symbol = self.comboBox_ticker.currentText()
 
         #getting the data from dataFetch
-        self.data = self.fetcher.getData(symbol, startDate, endDate)
+        self.data = self.fetcher.getData(self.symbol, self.startDate, self.endDate)
         #dataList = data.values.tolist()
 
         #need to figure out how to imbed into pyqt
-        mplfinance.plot(self.data, type='candle', show_nontrading=False, style="yahoo", ylabel="Price", title=f"{symbol} Chart")
+        mplfinance.plot(self.data, type='candle', show_nontrading=False, style="yahoo", ylabel="Price", title=f"{self.symbol} Chart")
         plt.show()
 
 
@@ -97,5 +97,5 @@ class stock_gui(QWidget):
 
     #this populates the stock symbol combobox with stock symbols
     def _populateComboBox(self):
-        symbols = ['AC.TO', 'TSLA', 'FTS.TO', 'ENB.TO', 'AMD', 'BTO.TO', 'HSE.TO', 'TRZ.TO', 'NFLX']
+        symbols = ['AC.TO', 'TSLA', 'FTS.TO', 'ENB.TO', 'AMD', 'BTO.TO', 'HSE.TO', 'TRZ.TO', 'NFLX', 'BTO.TO']
         self.comboBox_ticker.addItems(symbols)
