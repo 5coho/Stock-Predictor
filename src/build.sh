@@ -9,10 +9,10 @@
 #creating executable
 "pyinstaller" --onefile -i "media/chart.ico" --name="Stock Predictor" --noconsole main.py
 
-#copying Logical Clock executable to project root
+#copying Stock Predictor executable to project root
 cp "dist/Stock Predictor" .
 
-#removing Logical Clock.spec file created by pyinstaller
+#removing Stock Predictor.spec file created by pyinstaller
 rm "Stock Predictor.spec"
 
 #removing build folder created by pyinstaller
