@@ -26,6 +26,8 @@ import matplotlib.dates as mpl_dates
 from dataFetch import dataFetch
 from datetime import date
 import numpy as np
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavBar
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtCore import Qt
 from PyQt5.QtCore import QDate
@@ -60,7 +62,7 @@ class stock_gui(QWidget):
         self._populateComboBox()
 
         #plotting place holder Chart
-        #self._plotPlaceHolder()
+        self._plotPlaceHolder()
 
         #this is where the data that is grabbed from yfinance goes
         #is a panda dataFrame Object
@@ -95,6 +97,8 @@ class stock_gui(QWidget):
     #creates the functionality for the Linear Regression Predict button
     @pyqtSlot()
     def bttn_LR_predict_clicked(self):
+
+        #print to test button
         print("Linear Regression Predict button clicked!", flush=True)
 
 
@@ -116,8 +120,32 @@ class stock_gui(QWidget):
     #this funciton is for plotting a place holder chart when starting the program
     def _plotPlaceHolder(self):
 
-        #creating fake data
-        falseData = pd.DataFrame()
+        # creating figure
+        self.figure = plt.figure()
 
-        #plotting
-        self._plotStock(falseData)
+        #making canvas widget
+        self.canvas = FigureCanvas(self.figure)
+
+        # Navigation bar widger
+        self.toolbar = NavBar(self.canvas, self)
+
+        # adding tool bar to the layout
+        self.layout_chart.addWidget(self.toolbar)
+
+        # adding canvas to the layout
+        self.layout_chart.addWidget(self.canvas)
+
+        # clearing old figure
+        self.figure.clear()
+
+        # create an axis
+        ax = self.figure.add_subplot(111)
+
+        # plot data
+        plt.xlabel("Date")
+        plt.ylabel("Price")
+        plt.title("Stock Chart")
+        ax.plot([], '*-')
+
+        # refresh canvas
+        self.canvas.draw()
