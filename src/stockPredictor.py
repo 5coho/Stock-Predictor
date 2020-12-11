@@ -10,25 +10,27 @@ to predicting a stock such as Linear Regression
 __author__ = "Scott Howes, Braeden Van Der Velde, Tyler Leary"
 __credits__ = "Scott Howes, Braeden Van Der Velde, Tyler Leary"
 __email__ = "showes@unbc.ca, velde@unbc.ca, leary@unbc.ca"
-__python_version__ = "3.9.0"
+__python_version__ = "3.8.1"
 
 # imports
 
-import pandas as pd
-
-pd.options.mode.chained_assignment = None
-import datetime as dt
-from sklearn.linear_model import LinearRegression
 import numpy as np
+import pandas as pd
+from keras.layers import *
 from keras.models import Sequential
 from sklearn.preprocessing import MinMaxScaler
-from src.dataFetch import dataFetch
+
+# the seq_analyzer class
+from dataFetch import dataFetch
 
 
 class stockPredictor:
 
     # do nothing constructor
     def __init__(self):
+        pass
+
+    def linearRegression(self, symbol, startDate, endDate):
         pass
 
     def sequence_to_sequence(self, symbol, startDate, endDate):
@@ -81,30 +83,3 @@ class stockPredictor:
         closing_price_result = scaler.inverse_transform(closing_price_result)
 
         return closing_price_result
-
-    def _dataPrediction(self, data_frame, to_pred):
-        x_axis = pd.DataFrame(data_frame.Date)
-        y_axis = pd.DataFrame(data_frame[to_pred])
-        forecast = x_axis[-1:]
-        lm = LinearRegression()
-        model = lm.fit(x_axis, y_axis)
-        prediction = lm.predict(forecast)
-        return prediction[0][0]
-
-    def linearRegression(self, stock_info):
-        stock_info.reset_index(inplace=True, drop=False)
-        stock_info["Date"] = stock_info["Date"].apply(lambda x: dt.datetime.strftime(x, '%y%m%d'))
-        open = self._dataPrediction(stock_info, "Open")
-        close = self._dataPrediction(stock_info, "Close")
-        high = self._dataPrediction(stock_info, "High")
-        low = self._dataPrediction(stock_info, "Low")
-        alltogether = [open, high, low, close]
-        print(alltogether[0])
-        print(alltogether)
-
-# test code
-# if __name__ == "__main__":
-#     df = dataFetch()
-#     pred = stockPredictor()
-#     stock_info = df.getData("msft", "2020-01-28", "2020-02-7")
-#     pred.linearRegression(stock_info)
