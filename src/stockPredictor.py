@@ -13,23 +13,12 @@ __email__ = "showes@unbc.ca, velde@unbc.ca, leary@unbc.ca"
 __python_version__ = "3.9.0"
 
 # imports
-import pandas as pd
 
-import math
-import matplotlib.pyplot as plt
-import keras
-import pandas as pd
 import numpy as np
-from keras.models import Sequential
-from keras.layers import Dense
-from keras.layers import LSTM
-from keras.layers import Dropout
+import pandas as pd
 from keras.layers import *
+from keras.models import Sequential
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.metrics import mean_squared_error
-from sklearn.metrics import mean_absolute_error
-from sklearn.model_selection import train_test_split
-from keras.callbacks import EarlyStopping
 
 # the seq_analyzer class
 from src.dataFetch import dataFetch
@@ -89,7 +78,7 @@ class stockPredictor:
             test_result.append(future_inputs[i - 60:i, 0])
         test_result = np.array(test_result)
         test_result = np.reshape(test_result,
-                                         (test_result.shape[0], test_result.shape[1], 1))
+                                 (test_result.shape[0], test_result.shape[1], 1))
         closing_price_result = lstm_model.predict(test_result)
         closing_price_result = scaler.inverse_transform(closing_price_result)
 

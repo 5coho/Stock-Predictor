@@ -34,8 +34,6 @@ class dataFetch:
 
         #using data reading to get data
         history = pdr.get_data_yahoo(symbol, start=startDate, end=endDate)
-
         #removes unwanted columns from data
         ohlc = history.iloc[:, [0, 1, 2, 3]]
-
         return ohlc
