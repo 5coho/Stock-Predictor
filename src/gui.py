@@ -18,16 +18,12 @@ __python_version__  = "3.9.0"
 #imports
 import sys
 import os
-import mplfinance
-from mplfinance.original_flavor import candlestick_ohlc
 import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.dates as mpl_dates
+import plotly.graph_objects as go
+import plotly.express as px
 from dataFetch import dataFetch
 from datetime import date
 import numpy as np
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavBar
 from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtCore import Qt
 from PyQt5.QtCore import QDate
@@ -36,6 +32,7 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5.QtWidgets import QDateEdit
 from PyQt5.QtWidgets import QVBoxLayout
 from PyQt5.uic import loadUi
+from PyQt5 import QtWebEngineWidgets
 
 
 #the seq_gui class
@@ -61,8 +58,9 @@ class stock_gui(QWidget):
         #populating the stock combobox with symbols
         self._populateComboBox()
 
-        #plotting place holder Chart
-        self._plotPlaceHolder()
+        #setting up plotly environment
+        self.browser = QtWebEngineWidgets.QWebEngineView(self)
+        self.layout_chart.addWidget(self.browser)
 
         #this is where the data that is grabbed from yfinance goes
         #is a panda dataFrame Object
@@ -75,6 +73,7 @@ class stock_gui(QWidget):
         #bttn_create connects
         self.bttn_plot.clicked.connect(self.bttn_plot_clicked)
         self.bttn_LR_predict.clicked.connect(self.bttn_LR_predict_clicked)
+        self.bttn_seq2seq_predict.clicked.connect(self.bttn_seq2seq_predict_clicked)
 
 
     #creates the functionality for the plot button
@@ -102,6 +101,14 @@ class stock_gui(QWidget):
         print("Linear Regression Predict button clicked!", flush=True)
 
 
+    #creates the functionality for the Linear Regression Predict button
+    @pyqtSlot()
+    def bttn_seq2seq_predict_clicked(self):
+
+        #print to test button
+        print("sequence 2 sequence Predict button clicked!", flush=True)
+
+
     #this populates the stock symbol combobox with stock symbols
     def _populateComboBox(self):
         symbols = ['AC.TO', 'TSLA', 'FTS.TO', 'ENB.TO', 'AMD', 'BTO.TO', 'HSE.TO', 'TRZ.TO', 'NFLX', 'BTO.TO']
@@ -112,40 +119,20 @@ class stock_gui(QWidget):
     #is a candlestick chart
     def _plotStock(self, stockData):
 
-        #need to figure out how to imbed into pyqt
-        mplfinance.plot(stockData, type='candle', show_nontrading=False, style="yahoo", ylabel="Price", title=f"{self.symbol} Chart")
-        plt.show()
+        #adding date as a label
+        stockData.reset_index(inplace=True,drop=False)
 
+        #plotting figure in layout_chart
+        fig = go.Figure(data=[go.Candlestick(x=stockData['Date'],
+                open=stockData['Open'],
+                high=stockData['High'],
+                low=stockData['Low'],
+                close=stockData['Close'])])
 
-    #this funciton is for plotting a place holder chart when starting the program
-    def _plotPlaceHolder(self):
+        #figure layout
+        fig.update_layout(title=f"{self.symbol} Chart from {self.startDate} to {self.endDate}",
+                yaxis_title='Price',
+                xaxis_title='Date')
 
-        # creating figure
-        self.figure = plt.figure()
-
-        #making canvas widget
-        self.canvas = FigureCanvas(self.figure)
-
-        # Navigation bar widger
-        self.toolbar = NavBar(self.canvas, self)
-
-        # adding tool bar to the layout
-        self.layout_chart.addWidget(self.toolbar)
-
-        # adding canvas to the layout
-        self.layout_chart.addWidget(self.canvas)
-
-        # clearing old figure
-        self.figure.clear()
-
-        # create an axis
-        ax = self.figure.add_subplot(111)
-
-        # plot data
-        plt.xlabel("Date")
-        plt.ylabel("Price")
-        plt.title("Stock Chart")
-        ax.plot([], '*-')
-
-        # refresh canvas
-        self.canvas.draw()
+        #adding to browser widget
+        self.browser.setHtml(fig.to_html(include_plotlyjs='cdn'))

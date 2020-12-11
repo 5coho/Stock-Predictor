@@ -30,12 +30,113 @@
     <normaloff>../media/chart.ico</normaloff>../media/chart.ico</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="1" rowspan="3">
+   <item row="0" column="1" rowspan="4">
     <layout class="QVBoxLayout" name="layout_chart">
      <property name="sizeConstraint">
       <enum>QLayout::SetFixedSize</enum>
      </property>
     </layout>
+   </item>
+   <item row="0" column="0">
+    <widget class="QGroupBox" name="groupBox_stock">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="title">
+      <string>Stock</string>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+     <layout class="QFormLayout" name="formLayout_2">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetFixedSize</enum>
+      </property>
+      <property name="topMargin">
+       <number>11</number>
+      </property>
+      <property name="rightMargin">
+       <number>11</number>
+      </property>
+      <property name="bottomMargin">
+       <number>11</number>
+      </property>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_ticker">
+        <property name="text">
+         <string>Stock Symbol</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QComboBox" name="comboBox_ticker">
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="currentIndex">
+         <number>-1</number>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>18</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="placeholderText">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_start">
+        <property name="text">
+         <string>Start Date</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QDateEdit" name="dateEdit_start">
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+        <property name="date">
+         <date>
+          <year>2020</year>
+          <month>11</month>
+          <day>9</day>
+         </date>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_end">
+        <property name="text">
+         <string>End Date</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QDateEdit" name="dateEdit_end">
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QPushButton" name="bttn_plot">
+        <property name="text">
+         <string>Plot</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupBox_LR">
@@ -44,6 +145,18 @@
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>201</width>
+       <height>180</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>201</width>
+       <height>180</height>
+      </size>
      </property>
      <property name="title">
       <string>Linear Regression</string>
@@ -173,101 +286,151 @@
      </layout>
     </widget>
    </item>
-   <item row="0" column="0">
-    <widget class="QGroupBox" name="groupBox_stock">
+   <item row="2" column="0">
+    <widget class="QGroupBox" name="groupBox_seq2seq">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="minimumSize">
+      <size>
+       <width>201</width>
+       <height>180</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>201</width>
+       <height>180</height>
+      </size>
+     </property>
      <property name="title">
-      <string>Stock</string>
+      <string>Sequence 2 Sequence</string>
      </property>
-     <property name="flat">
-      <bool>false</bool>
-     </property>
-     <property name="checkable">
-      <bool>false</bool>
-     </property>
-     <layout class="QFormLayout" name="formLayout_2">
+     <layout class="QFormLayout" name="formLayout_3">
       <property name="sizeConstraint">
        <enum>QLayout::SetFixedSize</enum>
       </property>
-      <property name="topMargin">
+      <property name="fieldGrowthPolicy">
+       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+      </property>
+      <property name="leftMargin">
        <number>11</number>
       </property>
-      <property name="rightMargin">
+      <property name="topMargin">
        <number>11</number>
       </property>
       <property name="bottomMargin">
        <number>11</number>
       </property>
       <item row="0" column="0">
-       <widget class="QLabel" name="label_ticker">
+       <widget class="QLabel" name="label_seq2seq_open">
         <property name="text">
-         <string>Stock Symbol</string>
+         <string>Open</string>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QComboBox" name="comboBox_ticker">
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
+       <widget class="QLabel" name="label_seq2seq_openVal">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
         </property>
-        <property name="currentIndex">
-         <number>-1</number>
+        <property name="text">
+         <string>0</string>
         </property>
-        <property name="iconSize">
-         <size>
-          <width>18</width>
-          <height>20</height>
-         </size>
-        </property>
-        <property name="placeholderText">
-         <string/>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QLabel" name="label_start">
+       <widget class="QLabel" name="label_seq2seq_high">
         <property name="text">
-         <string>Start Date</string>
+         <string>High</string>
         </property>
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QDateEdit" name="dateEdit_start">
-        <property name="calendarPopup">
-         <bool>true</bool>
+       <widget class="QLabel" name="label_seq2seq_highVal">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
         </property>
-        <property name="date">
-         <date>
-          <year>2020</year>
-          <month>11</month>
-          <day>9</day>
-         </date>
+        <property name="text">
+         <string>0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QLabel" name="label_end">
+       <widget class="QLabel" name="label_seq2seq_low">
         <property name="text">
-         <string>End Date</string>
+         <string>Low</string>
         </property>
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QDateEdit" name="dateEdit_end">
-        <property name="calendarPopup">
-         <bool>true</bool>
+       <widget class="QLabel" name="label_seq2seq_lowVal">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_seq2seq_close">
+        <property name="text">
+         <string>Close</string>
         </property>
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QPushButton" name="bttn_plot">
+       <widget class="QLabel" name="label_seq2seq_closeVal">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="text">
-         <string>Plot</string>
+         <string>0</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QPushButton" name="bttn_seq2seq_predict">
+        <property name="text">
+         <string>Predict</string>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
         </property>
        </widget>
       </item>
