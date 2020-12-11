@@ -109,11 +109,10 @@ class stock_gui(QWidget):
     @pyqtSlot()
     def bttn_seq2seq_predict_clicked(self):
 
-        #print to test button
-        print("sequence 2 sequence Predict button clicked!", flush=True)
-
+        #calling the seq 2 seq function to get the closing price
         closing = self.stockPred.sequence_to_sequence(self.symbol, self.startDate, self.endDate)
 
+        #printing for testing
         print(closing, flush=True)
 
 
