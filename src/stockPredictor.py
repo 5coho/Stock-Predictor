@@ -10,7 +10,7 @@ to predicting a stock such as Linear Regression
 __author__ = "Scott Howes, Braeden Van Der Velde, Tyler Leary"
 __credits__ = "Scott Howes, Braeden Van Der Velde, Tyler Leary"
 __email__ = "showes@unbc.ca, velde@unbc.ca, leary@unbc.ca"
-__python_version__ = "3.9.0"
+__python_version__ = "3.8.1"
 
 # imports
 
@@ -21,7 +21,7 @@ from keras.models import Sequential
 from sklearn.preprocessing import MinMaxScaler
 
 # the seq_analyzer class
-from src.dataFetch import dataFetch
+from dataFetch import dataFetch
 
 
 class stockPredictor:

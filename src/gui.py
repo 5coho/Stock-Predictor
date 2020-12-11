@@ -12,12 +12,13 @@ Currently underdevelopment
 __author__          = "Scott Howes, Braeden Van Der Velde, Tyler Leary"
 __credits__         = "Scott Howes, Braeden Van Der Velde, Tyler Leary"
 __email__           = "showes@unbc.ca, velde@unbc.ca, leary@unbc.ca"
-__python_version__  = "3.9.0"
+__python_version__  = "3.8.1"
 
 
 #imports
 import sys
 import os
+from stockPredictor import stockPredictor
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
@@ -66,6 +67,9 @@ class stock_gui(QWidget):
         #is a panda dataFrame Object
         self.data = pd.DataFrame()
 
+        #initializing stock stockPredictor
+        self.stockPred = stockPredictor()
+
 
     #loads the connection for the buttons
     def _load_connects(self):
@@ -107,6 +111,10 @@ class stock_gui(QWidget):
 
         #print to test button
         print("sequence 2 sequence Predict button clicked!", flush=True)
+
+        closing = self.stockPred.sequence_to_sequence(self.symbol, self.startDate, self.endDate)
+
+        print(closing, flush=True)
 
 
     #this populates the stock symbol combobox with stock symbols
