@@ -45,6 +45,18 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="minimumSize">
+      <size>
+       <width>201</width>
+       <height>180</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>201</width>
+       <height>180</height>
+      </size>
+     </property>
      <property name="title">
       <string>Linear Regression</string>
      </property>
