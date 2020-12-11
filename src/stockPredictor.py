@@ -14,13 +14,14 @@ __python_version__ = "3.9.0"
 
 # imports
 
-import numpy as np
 import pandas as pd
-from keras.layers import *
+
+pd.options.mode.chained_assignment = None
+import datetime as dt
+from sklearn.linear_model import LinearRegression
+import numpy as np
 from keras.models import Sequential
 from sklearn.preprocessing import MinMaxScaler
-
-# the seq_analyzer class
 from src.dataFetch import dataFetch
 
 
@@ -28,9 +29,6 @@ class stockPredictor:
 
     # do nothing constructor
     def __init__(self):
-        pass
-
-    def linearRegression(self, symbol, startDate, endDate):
         pass
 
     def sequence_to_sequence(self, symbol, startDate, endDate):
@@ -83,3 +81,22 @@ class stockPredictor:
         closing_price_result = scaler.inverse_transform(closing_price_result)
 
         return closing_price_result
+
+    def linearRegression(self, stock_info):
+        stock_info.reset_index(inplace=True, drop=False)
+        stock_info["Date"] = stock_info["Date"].apply(lambda x: dt.datetime.strftime(x, '%y%m%d'))
+        x_axis = pd.DataFrame(stock_info.Date)
+        y_axis = pd.DataFrame(stock_info.Open)
+        forecast = x_axis[-1:]
+        lm = LinearRegression()
+        model = lm.fit(x_axis, y_axis)
+        print(stock_info)
+        prediction = lm.predict(forecast)
+        print(prediction)
+
+
+if __name__ == "__main__":
+    df = dataFetch()
+    pred = stockPredictor()
+    stock_info = df.getData("msft", "2020-01-28", "2020-02-7")
+    pred.linearRegression(stock_info)
