@@ -73,6 +73,7 @@ class stock_gui(QWidget):
         #bttn_create connects
         self.bttn_plot.clicked.connect(self.bttn_plot_clicked)
         self.bttn_LR_predict.clicked.connect(self.bttn_LR_predict_clicked)
+        self.bttn_seq2seq_predict.clicked.connect(self.bttn_seq2seq_predict_clicked)
 
 
     #creates the functionality for the plot button
@@ -98,6 +99,14 @@ class stock_gui(QWidget):
 
         #print to test button
         print("Linear Regression Predict button clicked!", flush=True)
+
+
+    #creates the functionality for the Linear Regression Predict button
+    @pyqtSlot()
+    def bttn_seq2seq_predict_clicked(self):
+
+        #print to test button
+        print("sequence 2 sequence Predict button clicked!", flush=True)
 
 
     #this populates the stock symbol combobox with stock symbols
