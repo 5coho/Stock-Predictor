@@ -82,17 +82,24 @@ class stockPredictor:
 
         return closing_price_result
 
-    def linearRegression(self, stock_info):
-        stock_info.reset_index(inplace=True, drop=False)
-        stock_info["Date"] = stock_info["Date"].apply(lambda x: dt.datetime.strftime(x, '%y%m%d'))
-        x_axis = pd.DataFrame(stock_info.Date)
-        y_axis = pd.DataFrame(stock_info.Open)
+    def _dataPrediction(self, data_frame, to_pred):
+        x_axis = pd.DataFrame(data_frame.Date)
+        y_axis = pd.DataFrame(data_frame[to_pred])
         forecast = x_axis[-1:]
         lm = LinearRegression()
         model = lm.fit(x_axis, y_axis)
-        print(stock_info)
         prediction = lm.predict(forecast)
-        print(prediction)
+        return prediction
+
+    def linearRegression(self, stock_info):
+        stock_info.reset_index(inplace=True, drop=False)
+        stock_info["Date"] = stock_info["Date"].apply(lambda x: dt.datetime.strftime(x, '%y%m%d'))
+        open = self._dataPrediction(stock_info, "Open")
+        close = self._dataPrediction(stock_info, "Close")
+        max = self._dataPrediction(stock_info, "High")
+        min = self._dataPrediction(stock_info, "Low")
+        alltogether = [open, close, max, min]
+        print(alltogether)
 
 
 if __name__ == "__main__":
