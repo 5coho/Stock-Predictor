@@ -10,10 +10,11 @@ to predicting a stock such as Linear Regression
 __author__ = "Scott Howes, Braeden Van Der Velde, Tyler Leary"
 __credits__ = "Scott Howes, Braeden Van Der Velde, Tyler Leary"
 __email__ = "showes@unbc.ca, velde@unbc.ca, leary@unbc.ca"
-__python_version__ = "3.9.0"
+__python_version__ = "3.8.1"
 
 # imports
 
+import numpy as np
 import pandas as pd
 
 pd.options.mode.chained_assignment = None
