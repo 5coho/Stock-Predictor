@@ -92,7 +92,7 @@ class stock_gui(QWidget):
         #getting the data from dataFetch
         self.data = self.fetcher.getData(self.symbol, self.startDate, self.endDate)
         #dataList = data.values.tolist()
-        datalist = self.stockPred.linearRegression(self.data)
+
         #plotting data
         self._plotStock(self.data)
 
@@ -101,8 +101,16 @@ class stock_gui(QWidget):
     @pyqtSlot()
     def bttn_LR_predict_clicked(self):
 
-        #print to test button
-        print("Linear Regression Predict button clicked!", flush=True)
+        #calling the Linear Regression function
+        #storing data to predictionList
+        predictionList = self.stockPred.linearRegression(self.data)
+
+        #adding returned values in predictionList to labels
+        self.label_LR_openVal.setText(str(round(predictionList[0], 2)))
+        self.label_LR_highVal.setText(str(round(predictionList[1], 2)))
+        self.label_LR_lowVal.setText(str(round(predictionList[2], 2)))
+        self.label_LR_closeVal.setText(str(round(predictionList[3], 2)))
+
 
 
     #creates the functionality for the Linear Regression Predict button

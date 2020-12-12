@@ -21,14 +21,17 @@ from sklearn.linear_model import LinearRegression
 import numpy as np
 from keras.models import Sequential
 from sklearn.preprocessing import MinMaxScaler
-from src.dataFetch import dataFetch
+from dataFetch import dataFetch
 
 
 class stockPredictor:
 
+
     # do nothing constructor
     def __init__(self):
         pass
+
+
 
     def sequence_to_sequence(self, symbol, startDate, endDate):
         datafetch = dataFetch()
@@ -81,6 +84,8 @@ class stockPredictor:
 
         return closing_price_result
 
+
+
     def _dataPrediction(self, data_frame, to_pred):
         x_axis = pd.DataFrame(data_frame.Date)
         y_axis = pd.DataFrame(data_frame[to_pred])
@@ -90,6 +95,8 @@ class stockPredictor:
         prediction = lm.predict(forecast)
         return prediction[0][0]
 
+
+
     def linearRegression(self, stock_info):
         stock_info.reset_index(inplace=True, drop=False)
         stock_info["Date"] = stock_info["Date"].apply(lambda x: dt.datetime.strftime(x, '%y%m%d'))
@@ -98,12 +105,5 @@ class stockPredictor:
         high = self._dataPrediction(stock_info, "High")
         low = self._dataPrediction(stock_info, "Low")
         alltogether = [open, high, low, close]
-        print(alltogether[0])
-        print(alltogether)
 
-# test code
-# if __name__ == "__main__":
-#     df = dataFetch()
-#     pred = stockPredictor()
-#     stock_info = df.getData("msft", "2020-01-28", "2020-02-7")
-#     pred.linearRegression(stock_info)
+        return alltogether
