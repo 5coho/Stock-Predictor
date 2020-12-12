@@ -31,7 +31,7 @@ from PyQt5.QtCore import QDate
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtWidgets import QDateEdit
-from PyQt5.QtWidgets import QVBoxLayout
+from PyQt5.QtWidgets import QMessageBox
 from PyQt5.uic import loadUi
 from PyQt5 import QtWebEngineWidgets
 
@@ -128,10 +128,10 @@ class stock_gui(QWidget):
     def bttn_seq2seq_predict_clicked(self):
 
         #calling the seq 2 seq function to get the closing price
-        closing = self.stockPred.sequence_to_sequence(self.symbol, self.startDate, self.endDate)
+        #closing = self.stockPred.sequence_to_sequence(self.symbol, self.startDate, self.endDate)
 
-        #printing for testing
-        print(closing, flush=True)
+        #displays error Message
+        self._errorMessage()
 
         #disabling button
         self.bttn_seq2seq_predict.setEnabled(False)
@@ -164,3 +164,18 @@ class stock_gui(QWidget):
 
         #adding to browser widget
         self.browser.setHtml(fig.to_html(include_plotlyjs='cdn'))
+
+
+    #Error Message function
+    #only parameter is a string which is the Message
+    def _errorMessage(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Error Message Box")
+        msg.setIcon(QMessageBox.Warning)
+        msg.setText("<b>Sequence to Sequence Has Not Been Implemented</b>")
+        msg.setInformativeText("We tried really hard to implement this but tensorflow "
+                                "and Keras kept breaking our software and only worked "
+                                "on Tyler's machine. It was also only predicting the "
+                                "closing price accuractly. We kept the code but it is commented "
+                                "out and tensorflow and keras were removed from requirements.txt")
+        msg.exec()
