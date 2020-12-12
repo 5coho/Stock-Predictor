@@ -94,7 +94,7 @@ class stockPredictor:
         prediction = lm.predict(forecast)
         return prediction[0][0]
 
-        
+
     def linearRegression(self, data):
         stock_info = data.copy()
         stock_info.reset_index(inplace=True, drop=False)
