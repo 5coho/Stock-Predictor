@@ -94,8 +94,9 @@ class stockPredictor:
         prediction = lm.predict(forecast)
         return prediction[0][0]
 
-
-    def linearRegression(self, stock_info):
+        
+    def linearRegression(self, data):
+        stock_info = data.copy()
         stock_info.reset_index(inplace=True, drop=False)
         stock_info["Date"] = stock_info["Date"].apply(lambda x: dt.datetime.strftime(x, '%y%m%d'))
         open = self._dataPrediction(stock_info, "Open")
