@@ -14,9 +14,7 @@ __python_version__ = "3.8.1"
 
 # imports
 
-import numpy as np
 import pandas as pd
-
 pd.options.mode.chained_assignment = None
 import datetime as dt
 from sklearn.linear_model import LinearRegression
