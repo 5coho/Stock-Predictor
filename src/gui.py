@@ -114,10 +114,16 @@ class stock_gui(QWidget):
         predictionList = self.stockPred.linearRegression(self.data)
 
         #adding returned values in predictionList to labels
-        self.label_LR_openVal.setText(str(round(predictionList[0], 2)))
-        self.label_LR_highVal.setText(str(round(predictionList[1], 2)))
-        self.label_LR_lowVal.setText(str(round(predictionList[2], 2)))
-        self.label_LR_closeVal.setText(str(round(predictionList[3], 2)))
+        predOpen = round(predictionList[0], 2)
+        predHigh = round(predictionList[1], 2)
+        predLow = round(predictionList[2], 2)
+        predClose = round(predictionList[3], 2)
+
+        self.label_LR_openVal.setText(str(predOpen))
+        self.label_LR_highVal.setText(str(predHigh))
+        self.label_LR_lowVal.setText(str(predLow))
+        self.label_LR_closeVal.setText(str(predClose))
+
 
         #redisbaling buttons
         self.bttn_LR_predict.setEnabled(False)
