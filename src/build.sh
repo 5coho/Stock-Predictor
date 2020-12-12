@@ -7,13 +7,10 @@
 #only version 1.19.3 will work.
 
 #creating executable
-"pyinstaller" --onefile -i "media/chart.ico" --name="Stock Predictor" --noconsole main.py
+"pyinstaller" "Stock Predictor.spec" main.py
 
 #copying Stock Predictor executable to project root
 cp "dist/Stock Predictor" .
-
-#removing Stock Predictor.spec file created by pyinstaller
-rm "Stock Predictor.spec"
 
 #removing build folder created by pyinstaller
 rm -r build

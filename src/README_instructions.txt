@@ -5,7 +5,7 @@ Below explains the steps involved for each.
 
 
 -Installing Python
-To install Python, please visit www.python.org for details. We built our project 
+To install Python, please visit www.python.org for details. We built our project
 using Python version 3.8 but Python version 3.9 should also work.. maybe
 
 
@@ -71,7 +71,7 @@ This will run the main.py file and a GUI should appear.
 For convenience we have included an executable. To run the executable file,
 navigate to our projects src file folder and double click on Stock Predictor.exe.
 Our projects GUI should then appear.
-NOTE: This executable is a shortcut.
+NOTE: This executable, for some reason, takes a little time to load.
 
 
 -Predicting The Next Day Stock Price
