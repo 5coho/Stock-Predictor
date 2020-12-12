@@ -53,6 +53,10 @@ class stock_gui(QWidget):
         self.endDate = ""
         self.symbol = "No Symbol"
 
+        #disabling buttons predict buttons
+        self.bttn_LR_predict.setEnabled(False)
+        self.bttn_seq2seq_predict.setEnabled(False)
+
         #setting the dateEdit_end to current date
         self.dateEdit_end.setDate(QDate(date.today()))
 
@@ -96,6 +100,10 @@ class stock_gui(QWidget):
         #plotting data
         self._plotStock(self.data)
 
+        #reenableing predict buttons
+        self.bttn_LR_predict.setEnabled(True)
+        self.bttn_seq2seq_predict.setEnabled(True)
+
 
     #creates the functionality for the Linear Regression Predict button
     @pyqtSlot()
@@ -111,6 +119,8 @@ class stock_gui(QWidget):
         self.label_LR_lowVal.setText(str(round(predictionList[2], 2)))
         self.label_LR_closeVal.setText(str(round(predictionList[3], 2)))
 
+        #redisbaling buttons
+        self.bttn_LR_predict.setEnabled(False)
 
 
     #creates the functionality for the Linear Regression Predict button
@@ -122,6 +132,9 @@ class stock_gui(QWidget):
 
         #printing for testing
         print(closing, flush=True)
+
+        #disabling button
+        self.bttn_seq2seq_predict.setEnabled(False)
 
 
     #this populates the stock symbol combobox with stock symbols
