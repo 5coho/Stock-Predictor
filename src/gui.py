@@ -31,7 +31,6 @@ from PyQt5.QtCore import QDate
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtWidgets import QDateEdit
-from PyQt5.QtWidgets import QVBoxLayout
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.uic import loadUi
 from PyQt5 import QtWebEngineWidgets
