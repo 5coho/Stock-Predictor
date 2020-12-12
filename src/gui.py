@@ -139,7 +139,7 @@ class stock_gui(QWidget):
 
     #this populates the stock symbol combobox with stock symbols
     def _populateComboBox(self):
-        symbols = ['AC.TO', 'TSLA', 'FTS.TO', 'ENB.TO', 'AMD', 'BTO.TO', 'HSE.TO', 'TRZ.TO', 'NFLX', 'BTO.TO']
+        symbols = ['AC.TO', 'TSLA', 'FTS.TO', 'ENB.TO', 'AMD', 'BTO.TO', 'HSE.TO', 'TRZ.TO', 'NFLX']
         self.comboBox_ticker.addItems(symbols)
 
 
