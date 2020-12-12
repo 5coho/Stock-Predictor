@@ -7,39 +7,31 @@ Currently underdevelopment
 
 """
 
+# Metadata
+__author__ = "Scott Howes, Braeden Van Der Velde, Tyler Leary"
+__credits__ = "Scott Howes, Braeden Van Der Velde, Tyler Leary"
+__email__ = "showes@unbc.ca, velde@unbc.ca, leary@unbc.ca"
+__python_version__ = "3.9.0"
 
-#Metadata
-__author__          = "Scott Howes, Braeden Van Der Velde, Tyler Leary"
-__credits__         = "Scott Howes, Braeden Van Der Velde, Tyler Leary"
-__email__           = "showes@unbc.ca, velde@unbc.ca, leary@unbc.ca"
-__python_version__  = "3.9.0"
+from datetime import date
 
-
-#imports
-import sys
-import os
+# imports
 import pandas as pd
 import plotly.graph_objects as go
-import plotly.express as px
-from dataFetch import dataFetch
-from datetime import date
-import numpy as np
-from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtCore import Qt
-from PyQt5.QtCore import QDate
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtWidgets import QWidget
-from PyQt5.QtWidgets import QDateEdit
-from PyQt5.QtWidgets import QVBoxLayout
-from PyQt5.uic import loadUi
 from PyQt5 import QtWebEngineWidgets
+from PyQt5.QtCore import QDate
+from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtWidgets import QWidget
+from PyQt5.uic import loadUi
+
+import stockPredictor as sp
+from dataFetch import dataFetch
 
 
-#the seq_gui class
+# the seq_gui class
 class stock_gui(QWidget):
 
-
-    #constructor
+    # constructor
     def __init__(self):
         super(stock_gui, self).__init__()
         loadUi("GUIs/gui.ui", self)
@@ -65,6 +57,7 @@ class stock_gui(QWidget):
         #this is where the data that is grabbed from yfinance goes
         #is a panda dataFrame Object
         self.data = pd.DataFrame()
+        self.pred = sp.stockPredictor()
 
 
     #loads the connection for the buttons
@@ -88,7 +81,7 @@ class stock_gui(QWidget):
         #getting the data from dataFetch
         self.data = self.fetcher.getData(self.symbol, self.startDate, self.endDate)
         #dataList = data.values.tolist()
-
+        datalist = self.pred.linearRegression(self.data)
         #plotting data
         self._plotStock(self.data)
 

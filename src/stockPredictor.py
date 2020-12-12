@@ -89,21 +89,22 @@ class stockPredictor:
         lm = LinearRegression()
         model = lm.fit(x_axis, y_axis)
         prediction = lm.predict(forecast)
-        return prediction
+        return prediction[0][0]
 
     def linearRegression(self, stock_info):
         stock_info.reset_index(inplace=True, drop=False)
         stock_info["Date"] = stock_info["Date"].apply(lambda x: dt.datetime.strftime(x, '%y%m%d'))
         open = self._dataPrediction(stock_info, "Open")
         close = self._dataPrediction(stock_info, "Close")
-        max = self._dataPrediction(stock_info, "High")
-        min = self._dataPrediction(stock_info, "Low")
-        alltogether = [open, close, max, min]
+        high = self._dataPrediction(stock_info, "High")
+        low = self._dataPrediction(stock_info, "Low")
+        alltogether = [open, high, low, close]
+        print(alltogether[0])
         print(alltogether)
 
-
-if __name__ == "__main__":
-    df = dataFetch()
-    pred = stockPredictor()
-    stock_info = df.getData("msft", "2020-01-28", "2020-02-7")
-    pred.linearRegression(stock_info)
+# test code
+# if __name__ == "__main__":
+#     df = dataFetch()
+#     pred = stockPredictor()
+#     stock_info = df.getData("msft", "2020-01-28", "2020-02-7")
+#     pred.linearRegression(stock_info)
